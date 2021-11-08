@@ -1,0 +1,17 @@
+{
+  "name": "merklewhitelist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "beskay",
+  "license": "ISC",
+  "dependencies": {
+    "ethers": "^5.5.1",
+    "express": "^4.17.1",
+    "keccak256": "^1.0.3",
+    "merkletreejs": "^0.2.24"
+  }
+}
