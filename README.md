@@ -27,10 +27,16 @@ npm install
 ```
 In the root and hardhat directory
 
-Add all addresses you want to whitelist in setMerkleTree.js
-
 ### Backend
 
+Add all addresses you want to whitelist in setMerkleTree.js
+```
+const leaves = [
+  "ADDRESS1",
+  "ADDRESS2",
+  "ADDRESS3",
+].map((x) => keccak256(x));
+```
 Start your backend server
 ```
 nodemon server.js
