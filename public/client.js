@@ -443,6 +443,14 @@ async function main() {
 
       //initialize contract
       contract = new ethers.Contract(contractAddress, abi, signer);
+
+      //Add event listener NFT mint
+      contract.on("Transfer", function (from, to, tokenId) {
+        //only show if transferevent is for own account
+        if (to == account) {
+          console.log(`Minted Token ID ${tokenId} to ${to}`);
+        }
+      });
     });
 
     funcBtn.addEventListener("click", async () => {

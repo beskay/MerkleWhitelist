@@ -1,6 +1,8 @@
 # Whitelist using a MerkleTree
 
-Simple code template to whitelist addresses using a merkletree and calling the mint function via MetaMask and ethers.js
+Simple code template for whitelisting addresses using a merkletree. Mint function is being called with MetaMask and ethers.js. Express.js is used as backend. 
+
+![Merkle](https://blog.ethereum.org/wp-content/uploads/2015/11/merkle.png "Merkle")
 
 ## Prerequisites
 
@@ -77,4 +79,16 @@ After executing that command in your hardhat console, reload your MetaMask (e.g.
 - Click on CONNECT, you should see your account address in the browser console
 - Call smart contract, if your address is whitelisted MetaMask should pop up, if not, you should see an error in the console
 
+If the minting worked, you should see a log of the transfer event in your browser console.
 To see your minted NFT in your wallet, click on "Import Tokens" in MetaMask and add the contract address
+
+## Common errors
+
+If you restart your local hardhat node and try to mint with the same MetaMask account, you will get an invalid nonce error. The cached transaction history in Metamask does not match the network’s history. To fix this, reset your MetaMask account or change the accounts nonce in your hardhat network by running this command in your hardhat console:
+```
+await network.provider.send("hardhat_setNonce", [
+  "YOUR_ACCOUNT",
+  "0x4",
+]);
+```
+In the above example the nonce is set to 4.
