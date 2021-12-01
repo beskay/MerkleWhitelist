@@ -59,11 +59,8 @@ In the hardhat console, deploy MerkleTree.sol
 Contract = await ethers.getContractFactory("MerkleTree");
 contract = await Contract.deploy("Name", "Symbol", "YOUR_MERKLE_ROOT");
 ```
-It should deploy your contract to
-```
-0x04C89607413713Ec9775E14b954286519d836FEf 
-```
-If not, change contract address to the correct one in client.js!
+You will see the deployed contract address in your console.
+Update the contract address in client.js to the correct one!
 
 #### Funding your account
 To fund your localhost account with ether
