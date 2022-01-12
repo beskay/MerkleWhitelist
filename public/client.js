@@ -138,6 +138,29 @@ const abi = [
   {
     inputs: [
       {
+        internalType: "address",
+        name: "account",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+      {
+        internalType: "bytes32[]",
+        name: "proof",
+        type: "bytes32[]",
+      },
+    ],
+    name: "claim",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
         internalType: "uint256",
         name: "tokenId",
         type: "uint256",
@@ -208,29 +231,6 @@ const abi = [
       },
     ],
     stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "account",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-      {
-        internalType: "bytes32[]",
-        name: "proof",
-        type: "bytes32[]",
-      },
-    ],
-    name: "redeem",
-    outputs: [],
-    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -410,8 +410,10 @@ async function main() {
     //get connectbutton
     connectButton = document.getElementById("connectButton");
 
-    //get function button
+    //get mint button
     funcBtn = document.getElementById("btn-sc");
+    //get mint form
+    mintForm = document.getElementById("mintForm");
 
     if (ethereum) {
       console.log("Ethereum successfully detected!");
@@ -456,11 +458,15 @@ async function main() {
     funcBtn.addEventListener("click", async () => {
       console.log("Button clicked");
 
-      const response = await fetch(`/retData/${account}`);
+      let mintAmount = parseInt(mintForm.value);
+
+      const response = await fetch(
+        `/mint/?account=${account}&amount=${mintAmount}`
+      );
       const proof = await response.json();
 
       // Call function, mint random token id (0-99) if account is whitelisted
-      await contract.redeem(account, Math.floor(Math.random() * 100), proof);
+      await contract.claim(account, mintAmount, proof);
     });
   }
 }

@@ -6,6 +6,8 @@ const merkleTree = require("./setMerkleTree.js");
 
 const app = express();
 
+const tree = merkleTree.generateMerkleTree();
+
 // serve files from the public directory
 app.use(express.static("public"));
 
@@ -20,11 +22,12 @@ app.get("/", (req, res) => {
 });
 
 // get Merkle Proof
-app.get("/retData/:account", async (req, res, next) => {
+app.get("/mint", async (req, res, next) => {
   try {
-    let account = req.params.account;
-    let leaf = keccak256(account);
-    let proof = merkleTree.tree.getHexProof(leaf);
+    let account = req.query.account;
+    let amount = req.query.amount;
+    let leaf = merkleTree.hashLeaf(account, amount);
+    let proof = tree.getHexProof(leaf);
     res.send(proof);
   } catch (err) {
     res.send(err);
