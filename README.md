@@ -1,6 +1,6 @@
-# Whitelist using a MerkleTree
+# Whitelist using a Merkle tree
 
-Version 2 of the MerkleTree whitelist template. Each whitelisted address can claim a specific amount of NFTs, e.g. Address 1 can claim 2 NFTs, Address 2 can claim 5 NFTs and so on.
+Version 2 of the Merkle tree whitelist template. Each whitelisted address can claim a specific amount of NFTs, e.g. Address 1 can claim 2 NFTs, Address 2 can claim 5 NFTs and so on.
 
 Mint function is being called with MetaMask and ethers.js. Express.js is used as backend.
 
@@ -43,9 +43,9 @@ Add all addresses with the specific token amount you want to whitelist in setMer
 
 ```
 const whitelist = {
-  "***REMOVED***": 4,
-  "***REMOVED***": 1,
-  "***REMOVED***": 2,
+  "0x1337ABC": 4,
+  "0xabcdefg": 1,
+  "0x123456": 2,
 };
 ```
 
@@ -96,7 +96,7 @@ After executing that command in your hardhat console, reload your MetaMask (e.g.
 - Open http://localhost:8080/
 - Open the Browser console to see if any errors come up
 - Click on CONNECT, you should see your account address in the browser console
-- Call smart contract, if your address is whitelisted MetaMask should pop up, if not, you should see an error in the console
+- Enter the correct amount and click "Mint", if your address is whitelisted MetaMask should pop up, if not, you should see an error in the console
 
 If the minting worked, you should see a log of the transfer event in your browser console.
 To see your minted NFT in your wallet, click on "Import Tokens" in MetaMask and add the contract address
@@ -113,3 +113,14 @@ await network.provider.send("hardhat_setNonce", [
 ```
 
 In the above example the nonce is set to 4.
+
+## Useful resources
+
+This here is an interesting article about MerkleProofs
+https://evosnails.medium.com/how-to-use-a-merkle-tree-for-large-whitelist-mints-2d48fd12577e
+
+OpenZeppelin MerkleProof Contract
+https://docs.openzeppelin.com/contracts/4.x/api/utils#MerkleProof
+
+General info about Merkle trees
+https://blog.ethereum.org/2015/11/15/merkling-in-ethereum/

@@ -5,9 +5,9 @@ const { ethers } = require("ethers");
 
 // Map whitelisted address to amount
 const whitelist = {
-  "***REMOVED***": 4,
-  "***REMOVED***": 1,
-  "***REMOVED***": 2,
+  "0x1337ABC": 4,
+  "0xabcdefg": 1,
+  "0x123456": 2,
 };
 
 // hash account + amount via Soliditys keccak256 function
